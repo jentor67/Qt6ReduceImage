@@ -2,6 +2,7 @@
 
 #include <QPainter>
 #include <QPaintEvent>
+#include "QDebug"
 
 
 Button::Button(QWidget *parent)
@@ -12,6 +13,8 @@ Button::Button(QWidget *parent)
     connect(this, &QPushButton::clicked, this, [this]() {
         emit clickedWithText(this->text());
     });
+
+    qDebug() << "Hello";
 
     // use a small default stylesheet that uses the accent color (keeps it simple)
     setStyleSheet(QStringLiteral("MyButton { }")); // placeholder, real styling below
@@ -43,10 +46,12 @@ void Button::setAccentColor(const QColor &c)
                         "  border-radius: 8px;"
                         "}"
                         "QPushButton:hover {"
-                        "  filter: brightness(1.08);"
+                        "  background-color: rgb(24, 255, 250);"
+                        "  color: blue;"
                         "}"
                         "QPushButton:pressed {"
-                        "  transform: translateY(1px);"
+                        "  background-color: rgb(255, 0, 0);"
+                        "  color: green;"
                         "}"
                         ).arg(m_accentColor.red())
                         .arg(m_accentColor.green())

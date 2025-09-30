@@ -30,6 +30,7 @@ protected:
 
 private:
     QColor m_accentColor;
+
 };
 
 #endif // BUTTON_H

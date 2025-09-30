@@ -34,7 +34,11 @@
       <height>511</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="vl2"/>
+    <layout class="QVBoxLayout" name="vl2">
+     <item>
+      <widget class="QListView" name="listView"/>
+     </item>
+    </layout>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget_3">
     <property name="geometry">

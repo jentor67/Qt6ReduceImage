@@ -1,2 +1,0 @@
-set(__QT_DEPLOY_TARGET_ReduceImage_FILE /home/jmajor/Git/Qt6ReduceImage/ReduceImage/build/Desktop_Qt_6_9_1-Debug/ReduceImage)
-set(__QT_DEPLOY_TARGET_ReduceImage_TYPE EXECUTABLE)
