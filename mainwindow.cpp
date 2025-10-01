@@ -8,6 +8,7 @@
 #include "QDir"
 #include "button.h"
 #include "label.h"
+#include "QCalendarWidget"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,6 +18,16 @@ MainWindow::MainWindow(QWidget *parent)
 
     model = new QStringListModel(this);
     ui->listView->setModel(model);
+
+    // Create a QFont object
+    QFont fontLBL;
+    // Set the point size
+    fontLBL.setPointSize(14);
+    // Set the font weight to bold
+    fontLBL.setWeight(QFont::Bold);
+
+
+
 
 
     //  **  IN FOLDER  section **
@@ -28,7 +39,10 @@ MainWindow::MainWindow(QWidget *parent)
     // create frame layout
     QVBoxLayout *frameInFolderLayout = new QVBoxLayout(frameInFolder);
 
+    // create title
     QLabel *lblTitle = new QLabel("Choose Folder of Images:");
+    lblTitle->setAlignment(Qt::AlignCenter | Qt::AlignCenter);
+    lblTitle->setFont(fontLBL);
     frameInFolderLayout->addWidget(lblTitle);
 
     Button *btn = new Button("Image Folder");
@@ -55,7 +69,9 @@ MainWindow::MainWindow(QWidget *parent)
     QVBoxLayout *frameOutFolderLayout = new QVBoxLayout(frameOutFolder);
 
     QLabel *lblTitleOut = new QLabel("Choose Folder to Send Images:");
-    frameInFolderLayout->addWidget(lblTitleOut);
+    lblTitleOut->setAlignment(Qt::AlignCenter | Qt::AlignCenter);
+    lblTitleOut->setFont(fontLBL);
+    frameOutFolderLayout->addWidget(lblTitleOut);
 
     Button *btnOut = new Button("Image Out Folder");
     btnOut->setAccentColor(QColor(46, 125, 50)); // a green
@@ -69,6 +85,15 @@ MainWindow::MainWindow(QWidget *parent)
     frameOutFolderLayout->addWidget(lblFolderOut);
 
     ui->vl1->addWidget(frameOutFolder);
+
+
+    // add calendar
+    QCalendarWidget *cal = new QCalendarWidget(parent);
+    //cal->setFixedWidth(250);
+    //cal->setFixedHeight(200);
+//    cal->resize(100,100);
+    ui->vl3->addWidget(cal);
+    //cal->show();
 
 
 }
