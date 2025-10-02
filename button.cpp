@@ -3,15 +3,13 @@
 #include <QPaintEvent>
 #include "QDebug"
 
-
-
 Button::Button(const QString &text, QWidget *parent)
     : QPushButton(text, parent)
-    //,
-    //m_accentColor(Qt::blue)
 {
     setAccentColor(QColor(146,12,150));
-    setMinimumHeight(46);
+    setMinimumHeight(30);
+    setMaximumWidth(200);
+    setMinimumWidth(200);
     setCursor(Qt::PointingHandCursor);
 
     connect(this, &QPushButton::clicked, this, [this]() {

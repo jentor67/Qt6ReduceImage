@@ -7,6 +7,7 @@
 #include "QFileInfoList"
 #include "QDir"
 #include "button.h"
+#include "slider.h"
 //#include "label.h"
 #include "QCalendarWidget"
 
@@ -22,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Create a QFont object
     QFont fontLBL;
     // Set the point size
-    fontLBL.setPointSize(14);
+    fontLBL.setPointSize(12);
     // Set the font weight to bold
     fontLBL.setWeight(QFont::Bold);
 
@@ -42,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
     frameInFolderLayout->addWidget(lblTitle);
 
     Button *btn = new Button("Image Folder");
-    frameInFolderLayout->addWidget(btn);
+    frameInFolderLayout->addWidget(btn, 0, Qt::AlignHCenter);
 
     connect(btn, &QPushButton::clicked, this, &MainWindow::openFolderDialogIn);
 
@@ -67,7 +68,7 @@ MainWindow::MainWindow(QWidget *parent)
     frameOutFolderLayout->addWidget(lblTitleOut);
 
     Button *btnOut = new Button("Image Out Folder");
-    frameOutFolderLayout->addWidget(btnOut);
+    frameOutFolderLayout->addWidget(btnOut, 0, Qt::AlignHCenter);
 
     connect(btnOut, &QPushButton::clicked, this, &MainWindow::openFolderDialogOut);
 
@@ -76,14 +77,64 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->vl1->addWidget(frameOutFolder);
 
+    //  ***************************
+
+    //  ** Resolution settings **
+    // create frame
+    QFrame *frameResolution = new QFrame;
+    frameResolution->setFrameShape(QFrame::Box);      // Box, Panel, StyledPanel, HLine, VLine, etc.
+    frameResolution->setFrameShadow(QFrame::Raised);  // Plain, Raised, Sunken
+
+    // create frame layout
+    QVBoxLayout *frameResolutionLayout = new QVBoxLayout(frameResolution);
+
+    QLabel *lblResolution = new QLabel("Choose Resolution %");
+    lblResolution->setAlignment(Qt::AlignCenter | Qt::AlignCenter);
+    lblResolution->setFont(fontLBL);
+    frameResolutionLayout->addWidget(lblResolution);
+
+
+    // add slider for REsolution
+    slider *sliderResolution = new slider();
+    frameResolutionLayout->addWidget(sliderResolution);
+
+    ui->vl1->addWidget(frameResolution);
+    // *****************************
+
+    //  ** Quality settings **
+    // create frame
+    QFrame *frameQuality = new QFrame;
+    frameQuality->setFrameShape(QFrame::Box);      // Box, Panel, StyledPanel, HLine, VLine, etc.
+    frameQuality->setFrameShadow(QFrame::Raised);  // Plain, Raised, Sunken
+
+    // create frame layout
+    QVBoxLayout *frameQualityLayout = new QVBoxLayout(frameQuality);
+
+    QLabel *lblQuality = new QLabel("Choose Quality %");
+    lblQuality->setAlignment(Qt::AlignCenter | Qt::AlignCenter);
+    lblQuality->setFont(fontLBL);
+    frameQualityLayout->addWidget(lblQuality);
+
+
+    // add slider for REsolution
+    slider *sliderQuality = new slider();
+    frameQualityLayout->addWidget(sliderQuality);
+
+    ui->vl1->addWidget(frameQuality);
+    // *****************************
+
+
 
     // add calendar
     QCalendarWidget *cal = new QCalendarWidget(parent);
     //cal->setFixedWidth(250);
-    //cal->setFixedHeight(200);
-//    cal->resize(100,100);
+    cal->setFixedHeight(200);
+    //cal->setVerticalHeaderFormat()
+    cal->setVerticalHeaderFormat(QCalendarWidget::NoVerticalHeader);
     ui->vl3->addWidget(cal);
-    //cal->show();
+
+    Button *btnProcess = new Button("Process");
+    ui->vl3->addWidget(btnProcess, 0, Qt::AlignHCenter);
 
 
 }
