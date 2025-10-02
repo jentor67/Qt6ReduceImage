@@ -1,29 +1,19 @@
 #include "button.h"
-
 #include <QPainter>
 #include <QPaintEvent>
 #include "QDebug"
 
 
-Button::Button(QWidget *parent)
-    : QPushButton(parent),
-    m_accentColor(Qt::blue)
-{
-    // forward standard clicked() to clickedWithText(text)
-    connect(this, &QPushButton::clicked, this, [this]() {
-        emit clickedWithText(this->text());
-    });
-
-    qDebug() << "Hello";
-
-    // use a small default stylesheet that uses the accent color (keeps it simple)
-    setStyleSheet(QStringLiteral("MyButton { }")); // placeholder, real styling below
-}
 
 Button::Button(const QString &text, QWidget *parent)
-    : QPushButton(text, parent),
-    m_accentColor(Qt::blue)
+    : QPushButton(text, parent)
+    //,
+    //m_accentColor(Qt::blue)
 {
+    setAccentColor(QColor(146,12,150));
+    setMinimumHeight(46);
+    setCursor(Qt::PointingHandCursor);
+
     connect(this, &QPushButton::clicked, this, [this]() {
         emit clickedWithText(this->text());
     });
@@ -31,7 +21,7 @@ Button::Button(const QString &text, QWidget *parent)
 
 void Button::setAccentColor(const QColor &c)
 {
-    if (c == m_accentColor) return;
+    //if (c == m_accentColor) return;
     m_accentColor = c;
     emit accentColorChanged(m_accentColor);
 

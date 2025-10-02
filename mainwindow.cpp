@@ -7,7 +7,7 @@
 #include "QFileInfoList"
 #include "QDir"
 #include "button.h"
-#include "label.h"
+//#include "label.h"
 #include "QCalendarWidget"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -26,10 +26,6 @@ MainWindow::MainWindow(QWidget *parent)
     // Set the font weight to bold
     fontLBL.setWeight(QFont::Bold);
 
-
-
-
-
     //  **  IN FOLDER  section **
     // create frame
     QFrame *frameInFolder = new QFrame;
@@ -46,9 +42,6 @@ MainWindow::MainWindow(QWidget *parent)
     frameInFolderLayout->addWidget(lblTitle);
 
     Button *btn = new Button("Image Folder");
-    btn->setAccentColor(QColor(46, 125, 50)); // a green
-    btn->setMinimumHeight(36);
-    btn->setCursor(Qt::PointingHandCursor);
     frameInFolderLayout->addWidget(btn);
 
     connect(btn, &QPushButton::clicked, this, &MainWindow::openFolderDialogIn);
@@ -74,9 +67,6 @@ MainWindow::MainWindow(QWidget *parent)
     frameOutFolderLayout->addWidget(lblTitleOut);
 
     Button *btnOut = new Button("Image Out Folder");
-    btnOut->setAccentColor(QColor(46, 125, 50)); // a green
-    btnOut->setMinimumHeight(36);
-    btnOut->setCursor(Qt::PointingHandCursor);
     frameOutFolderLayout->addWidget(btnOut);
 
     connect(btnOut, &QPushButton::clicked, this, &MainWindow::openFolderDialogOut);
@@ -111,18 +101,11 @@ void MainWindow::openFolderDialogIn()
         qDebug() << "Chosen folder:" << dirPath;
         lblFolderIn->setText(dirPath);
 
-        //fileListWidget->clear();  // Clear previous file list
 
         QDir dir(dirPath);
-     //   QFileInfoList fileList = dir.entryInfoList(QDir::Files | QDir::NoDotAndDotDot);
-        QStringList fileNames = dir.entryList(QDir::Files | QDir::NoDotAndDotDot);
+         QStringList fileNames = dir.entryList(QDir::Files | QDir::NoDotAndDotDot);
         model->setStringList(fileNames);
 
-        // for (const QFileInfo &fileInfo : fileList) {
-        //     qDebug() << fileInfo.fileName();
-        //     ui->listView
-        //     //fileListWidget->addItem(fileInfo.fileName());
-        // }
 
     }
 }

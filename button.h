@@ -11,7 +11,7 @@ class Button : public QPushButton
     Q_PROPERTY(QColor accentColor READ accentColor WRITE setAccentColor NOTIFY accentColorChanged)
 
 public:
-    explicit Button(QWidget *parent = nullptr);
+    //explicit Button(QWidget *parent = nullptr);
     explicit Button(const QString &text, QWidget *parent = nullptr);
 
     QColor accentColor() const { return m_accentColor; }
