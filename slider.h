@@ -8,7 +8,11 @@ class slider : public QSlider
     Q_OBJECT
 
 public:
-    explicit slider(QWidget *parent = nullptr);
+    explicit slider(
+        const int startPoint,
+        const int endPoint,
+        const int StartValue,
+        QWidget *parent = nullptr);
 
 signals:
     void valueChangedByUser(int value);

@@ -88,6 +88,8 @@ MainWindow::MainWindow(QWidget *parent)
     // create frame layout
     QVBoxLayout *frameResolutionLayout = new QVBoxLayout(frameResolution);
 
+    int resolutionSet = 95;
+
     QLabel *lblResolution = new QLabel("Choose Resolution %");
     lblResolution->setAlignment(Qt::AlignCenter | Qt::AlignCenter);
     lblResolution->setFont(fontLBL);
@@ -95,7 +97,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     // add slider for REsolution
-    slider *sliderResolution = new slider();
+    slider *sliderResolution = new slider(20,100, resolutionSet);
     frameResolutionLayout->addWidget(sliderResolution);
 
     ui->vl1->addWidget(frameResolution);
@@ -110,14 +112,21 @@ MainWindow::MainWindow(QWidget *parent)
     // create frame layout
     QVBoxLayout *frameQualityLayout = new QVBoxLayout(frameQuality);
 
-    QLabel *lblQuality = new QLabel("Choose Quality %");
+    qualitySet = 90;
+
+    QLabel *lblQuality = new QLabel("Choose Quality % " +  QString::number(qualitySet));
     lblQuality->setAlignment(Qt::AlignCenter | Qt::AlignCenter);
     lblQuality->setFont(fontLBL);
     frameQualityLayout->addWidget(lblQuality);
 
 
     // add slider for REsolution
-    slider *sliderQuality = new slider();
+    slider *sliderQuality = new slider(10,95, qualitySet);
+    // connect(sliderQuality,
+    //         &QSlider::valueChanged,
+    //         this,
+    //         [this](int qualitySet){lblQuality->setText(QString("Value: %1").arg(qualitySet));});
+
     frameQualityLayout->addWidget(sliderQuality);
 
     ui->vl1->addWidget(frameQuality);

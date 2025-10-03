@@ -30,5 +30,6 @@ private:
     QLabel *lblFolderOut;
     QListWidget *fileListWidget;
     QStringListModel *model;
+    int qualitySet;
 };
 #endif // MAINWINDOW_H
