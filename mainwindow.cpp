@@ -6,8 +6,8 @@
 #include "QFileDialog"
 #include "QFileInfoList"
 #include "QDir"
-#include "button.h"
-#include "slider.h"
+//#include "button.h"
+//#include "slider.h"
 //#include "label.h"
 #include "QCalendarWidget"
 
@@ -16,6 +16,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    ui->lblQualityValue->setText(QString::number(ui->sliderQuality->value()));
+    ui->lblResolutionValue->setText(QString::number(ui->sliderResolution->value()));
 
     model = new QStringListModel(this);
     ui->listView->setModel(model);
@@ -29,121 +32,144 @@ MainWindow::MainWindow(QWidget *parent)
 
     //  **  IN FOLDER  section **
     // create frame
-    QFrame *frameInFolder = new QFrame;
-    frameInFolder->setFrameShape(QFrame::Box);      // Box, Panel, StyledPanel, HLine, VLine, etc.
-    frameInFolder->setFrameShadow(QFrame::Raised);  // Plain, Raised, Sunken
+    // QFrame *frameInFolder = new QFrame;
+    // frameInFolder->setFrameShape(QFrame::Box);      // Box, Panel, StyledPanel, HLine, VLine, etc.
+    // frameInFolder->setFrameShadow(QFrame::Raised);  // Plain, Raised, Sunken
 
-    // create frame layout
-    QVBoxLayout *frameInFolderLayout = new QVBoxLayout(frameInFolder);
+    // // create frame layout
+    // QVBoxLayout *frameInFolderLayout = new QVBoxLayout(frameInFolder);
 
-    // create title
-    QLabel *lblTitle = new QLabel("Choose Folder of Images:");
-    lblTitle->setAlignment(Qt::AlignCenter | Qt::AlignCenter);
-    lblTitle->setFont(fontLBL);
-    frameInFolderLayout->addWidget(lblTitle);
+    // // create title
+    // QLabel *lblTitle = new QLabel("Choose Folder of Images:");
+    // lblTitle->setAlignment(Qt::AlignCenter | Qt::AlignCenter);
+    // lblTitle->setFont(fontLBL);
+    // frameInFolderLayout->addWidget(lblTitle);
 
-    Button *btn = new Button("Image Folder");
-    frameInFolderLayout->addWidget(btn, 0, Qt::AlignHCenter);
+    // Button *btn = new Button("Image Folder");
+    // frameInFolderLayout->addWidget(btn, 0, Qt::AlignHCenter);
 
-    connect(btn, &QPushButton::clicked, this, &MainWindow::openFolderDialogIn);
+    // connect(btn, &QPushButton::clicked, this, &MainWindow::openFolderDialogIn);
 
-    lblFolderIn = new QLabel("No Folder Chosen");
-    frameInFolderLayout->addWidget(lblFolderIn);
+    // lblFolderIn = new QLabel("No Folder Chosen");
+    // frameInFolderLayout->addWidget(lblFolderIn);
 
-    ui->vl1->addWidget(frameInFolder);
+    // ui->vl1->addWidget(frameInFolder);
 
 
     //  **  Out FOLDER  section **
     // create frame
-    QFrame *frameOutFolder = new QFrame;
-    frameOutFolder->setFrameShape(QFrame::Box);      // Box, Panel, StyledPanel, HLine, VLine, etc.
-    frameOutFolder->setFrameShadow(QFrame::Raised);  // Plain, Raised, Sunken
+    // QFrame *frameOutFolder = new QFrame;
+    // frameOutFolder->setFrameShape(QFrame::Box);      // Box, Panel, StyledPanel, HLine, VLine, etc.
+    // frameOutFolder->setFrameShadow(QFrame::Raised);  // Plain, Raised, Sunken
 
-    // create frame layout
-    QVBoxLayout *frameOutFolderLayout = new QVBoxLayout(frameOutFolder);
+    // // create frame layout
+    // QVBoxLayout *frameOutFolderLayout = new QVBoxLayout(frameOutFolder);
 
-    QLabel *lblTitleOut = new QLabel("Choose Folder to Send Images:");
-    lblTitleOut->setAlignment(Qt::AlignCenter | Qt::AlignCenter);
-    lblTitleOut->setFont(fontLBL);
-    frameOutFolderLayout->addWidget(lblTitleOut);
+    // QLabel *lblTitleOut = new QLabel("Choose Folder to Send Images:");
+    // lblTitleOut->setAlignment(Qt::AlignCenter | Qt::AlignCenter);
+    // lblTitleOut->setFont(fontLBL);
+    // frameOutFolderLayout->addWidget(lblTitleOut);
 
-    Button *btnOut = new Button("Image Out Folder");
-    frameOutFolderLayout->addWidget(btnOut, 0, Qt::AlignHCenter);
+    // Button *btnOut = new Button("Image Out Folder");
+    // frameOutFolderLayout->addWidget(btnOut, 0, Qt::AlignHCenter);
 
-    connect(btnOut, &QPushButton::clicked, this, &MainWindow::openFolderDialogOut);
+    // connect(btnOut, &QPushButton::clicked, this, &MainWindow::openFolderDialogOut);
 
-    lblFolderOut = new QLabel("No Folder Chosen");
-    frameOutFolderLayout->addWidget(lblFolderOut);
+    // lblFolderOut = new QLabel("No Folder Chosen");
+    // frameOutFolderLayout->addWidget(lblFolderOut);
 
-    ui->vl1->addWidget(frameOutFolder);
+    // ui->vl1->addWidget(frameOutFolder);
 
     //  ***************************
 
     //  ** Resolution settings **
     // create frame
-    QFrame *frameResolution = new QFrame;
-    frameResolution->setFrameShape(QFrame::Box);      // Box, Panel, StyledPanel, HLine, VLine, etc.
-    frameResolution->setFrameShadow(QFrame::Raised);  // Plain, Raised, Sunken
+    // QFrame *frameResolution = new QFrame;
+    // frameResolution->setFrameShape(QFrame::Box);      // Box, Panel, StyledPanel, HLine, VLine, etc.
+    // frameResolution->setFrameShadow(QFrame::Raised);  // Plain, Raised, Sunken
 
-    // create frame layout
-    QVBoxLayout *frameResolutionLayout = new QVBoxLayout(frameResolution);
+    // // create frame layout
+    // QVBoxLayout *frameResolutionLayout = new QVBoxLayout(frameResolution);
 
-    int resolutionSet = 95;
+    // int resolutionSet = 95;
 
-    QLabel *lblResolution = new QLabel("Choose Resolution %");
-    lblResolution->setAlignment(Qt::AlignCenter | Qt::AlignCenter);
-    lblResolution->setFont(fontLBL);
-    frameResolutionLayout->addWidget(lblResolution);
+    // QLabel *lblResolution = new QLabel("Choose Resolution %");
+    // lblResolution->setAlignment(Qt::AlignCenter | Qt::AlignCenter);
+    // lblResolution->setFont(fontLBL);
+    // frameResolutionLayout->addWidget(lblResolution);
 
 
-    // add slider for REsolution
-    slider *sliderResolution = new slider(20,100, resolutionSet);
-    frameResolutionLayout->addWidget(sliderResolution);
+    // // add slider for REsolution
+    // //slider *sliderResolution = new slider(20,100, resolutionSet);
+    // slider *sliderResolution = new slider();
+    // frameResolutionLayout->addWidget(sliderResolution);
 
-    ui->vl1->addWidget(frameResolution);
+    // ui->vl1->addWidget(frameResolution);
     // *****************************
 
     //  ** Quality settings **
     // create frame
-    QFrame *frameQuality = new QFrame;
-    frameQuality->setFrameShape(QFrame::Box);      // Box, Panel, StyledPanel, HLine, VLine, etc.
-    frameQuality->setFrameShadow(QFrame::Raised);  // Plain, Raised, Sunken
+    // QFrame *frameQuality = new QFrame;
+    // frameQuality->setFrameShape(QFrame::Box);      // Box, Panel, StyledPanel, HLine, VLine, etc.
+    // frameQuality->setFrameShadow(QFrame::Raised);  // Plain, Raised, Sunken
 
-    // create frame layout
-    QVBoxLayout *frameQualityLayout = new QVBoxLayout(frameQuality);
+    // // create frame layout
+    // QVBoxLayout *frameQualityLayout = new QVBoxLayout(frameQuality);
 
-    qualitySet = 90;
+    // qualitySet = 90;
 
-    QLabel *lblQuality = new QLabel("Choose Quality % " +  QString::number(qualitySet));
-    lblQuality->setAlignment(Qt::AlignCenter | Qt::AlignCenter);
-    lblQuality->setFont(fontLBL);
-    frameQualityLayout->addWidget(lblQuality);
+    // QLabel *lblQuality = new QLabel("Choose Quality % ");
+
+    // lblQuality->setAlignment(Qt::AlignCenter | Qt::AlignCenter);
+    // lblQuality->setFont(fontLBL);
+    // frameQualityLayout->addWidget(lblQuality);
 
 
     // add slider for REsolution
-    slider *sliderQuality = new slider(10,95, qualitySet);
-    // connect(sliderQuality,
-    //         &QSlider::valueChanged,
-    //         this,
-    //         [this](int qualitySet){lblQuality->setText(QString("Value: %1").arg(qualitySet));});
+    // slider *sliderQuality = new slider(); //10,95, qualitySet);
 
-    frameQualityLayout->addWidget(sliderQuality);
 
-    ui->vl1->addWidget(frameQuality);
+    // QObject::connect(
+    //     sliderQuality,
+    //     &slider::valueChangedByUser,
+    //     [&lblQuality](int val)
+    //       {lblQuality->setText(QString("Value: %1").arg(val));
+    // });
+
+    // QObject::connect(
+    //     sliderQuality,
+    //     &slider::valueChangedByUser,
+    //     this,
+    //     [&lblQuality](int val){lblQuality->setText(QString("Value: %1").arg(val));
+    // });
+
+    // Good practice (Clazy will be happy)
+    // QObject::connect(
+    //     sender,
+    //     &Sender::someSignal,
+    //     this,
+    //     [this]() {
+    //     // The connection is automatically disconnected when 'this' is destroyed
+    //     doSomethingWithMemberData();}
+    // );
+
+    // frameQualityLayout->addWidget(sliderQuality);
+
+    // ui->vl1->addWidget(frameQuality);
     // *****************************
 
 
 
     // add calendar
-    QCalendarWidget *cal = new QCalendarWidget(parent);
-    //cal->setFixedWidth(250);
-    cal->setFixedHeight(200);
-    //cal->setVerticalHeaderFormat()
-    cal->setVerticalHeaderFormat(QCalendarWidget::NoVerticalHeader);
-    ui->vl3->addWidget(cal);
+    // QCalendarWidget *cal = new QCalendarWidget(parent);
+    // //cal->setFixedWidth(250);
+    // cal->setFixedHeight(200);
+    // //cal->setVerticalHeaderFormat()
+    // cal->setVerticalHeaderFormat(QCalendarWidget::NoVerticalHeader);
+    // ui->vl3->addWidget(cal);
 
-    Button *btnProcess = new Button("Process");
-    ui->vl3->addWidget(btnProcess, 0, Qt::AlignHCenter);
+    // Button *btnProcess = new Button("Process");
+    // ui->vl3->addWidget(btnProcess, 0, Qt::AlignHCenter);
 
 
 }
@@ -190,3 +216,15 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_sliderQuality_valueChanged(int value)
+{
+    ui->lblQualityValue->setText(QString::number(value));
+}
+
+
+void MainWindow::on_sliderResolution_valueChanged(int value)
+{
+    ui->lblResolutionValue->setText(QString::number(value));
+}
+

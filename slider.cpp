@@ -1,14 +1,9 @@
 #include "slider.h"
 
-slider::slider(
-    int startPoint,
-    int endPoint,
-    int StartValue,
-    QWidget *parent)
+slider::slider(QWidget *parent)
     : QSlider(Qt::Horizontal, parent) // Default horizontal slider
 {
-    setRange(startPoint, endPoint);
-    setValue(StartValue);
+    setRange(0, 100);
 }
 
 void slider::mouseReleaseEvent(QMouseEvent *event)

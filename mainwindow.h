@@ -24,6 +24,10 @@ private slots:
     void openFolderDialogIn();
     void openFolderDialogOut();
 
+    void on_sliderQuality_valueChanged(int value);
+
+    void on_sliderResolution_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
     QLabel *lblFolderIn;
